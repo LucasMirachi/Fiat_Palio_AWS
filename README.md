@@ -57,13 +57,16 @@ Para o Fiat Palio Modelo 2014/2015, a entrada do módulo OBDII se localiza em um
 
 Para a realização desta etapa, é necessário um entendimento básico de programação em Python. Basicamente, deve-se parear e conectar o módulo OBDII com o computador através das próprias configurações de seu sistema operacional (exatamente como se conecta um teclado ou um fone bluetooth). Em seguida, deve-se identificar qual porta de serial o OBDII está atrelado (no meu caso, é na porta serial 'COM6', que é um dos serial padrão por link Bluetooth disponíveis). 
 
-Para testar se tudo está setado corretamente, entramos com o código:
-```import serial
+Para testar se tudo está setado corretamente, deve-se instalar a biblioteca de Python chamada Pyserial (basta dar um **pip install pyserial*** em uma linha de comando) e, em seguida, já podemos entrar com o código:
+~~~
+import serial
 ser = serial.Serial('COM6', 38400, timeout=1, bytesize=8, parity=serial.PARITY_NONE)
-# Os principais parâmetros: COM6 = Nome da porta serial usada pelo OBD e 38400 = a frequência de Bits por segundo que 
-# o aparelho opera
+# Os principais parâmetros: COM6 = Nome da porta serial usada pelo OBD; 38400 = a frequência de Bits por segundo que 
+# o aparelho opera; Timeout = 1 Bit de parada e parity = nenhum (PARITY_NONE).
 ser.write("atz\r\n".encode())
-print(ser.readline())```
+print(ser.readline())
+~~~
+
 
 Pronto, agora teoricamente os equipamentos conseguem trocar informações! Mas como fazemos com que  
 
@@ -71,7 +74,8 @@ Pronto, agora teoricamente os equipamentos conseguem trocar informações! Mas c
 
 Conectado o módulo OBD2 no carro, e após pareá-lo com o laptop, é necessário identificar o serial do módulo bluetooth (no meu caso, tty63) e rodar o código:
 
-```import serial
+~~~
+import serial
 import time
 ser = serial.Serial('/dev/tty63', 38400, timeout=1, bytesize=8, parity=serial.PARITY_NONE)
 time.sleep(1)
@@ -152,4 +156,4 @@ while True:
 
 	myMQTTClient.publish("connected_vehicle",'{ "rpm" : ' + str(rpm) + ', "speed" : ' + str(speed) + ',"temperature : ' + str(temp) + '}', 0)
 	time.sleep(1)```
-  
+  ~~~
