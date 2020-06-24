@@ -74,9 +74,8 @@ Pronto, se apareceu um output com o nome do OBD2 e sua versão (no meu caso, é 
 
 Mas como fazer para que o OBDII entenda quais informações queremos? Para isso, precisamos aprender sobre os comandos AT e sobre os protocolos de comunicação utilizados por todos os módulos OBDII.
 
-### Entendendo 
+### Aprendendo sobre os protocolos de comunicação dos módulos OBDII
 
-Conectado o módulo OBD2 no carro, e após pareá-lo com o laptop, é necessário identificar o serial do módulo bluetooth (no meu caso, tty63) e rodar o código:
 
 
 ---
@@ -89,7 +88,7 @@ Por algum motivo, estou conseguindo pegar dados sobre as rotações em rpm do mo
 </p>
 
 ---
-# Código Final (não definitivo, é necessário arrumar)
+# Código utilizado (não definitivo, é necessário arrumar!)
 ~~~
 import serial
 import time
