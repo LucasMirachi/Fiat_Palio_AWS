@@ -76,7 +76,12 @@ Mas como fazer para que o OBDII entenda quais informações queremos? Para isso,
 
 ### Aprendendo sobre os protocolos de comunicação dos módulos OBDII
 
+Antes de tudo é preciso entender que os protocolos são como logins e senhas diferentes para acessar a mesma coisa: a rede do veículo. Cada protocolo serve como uma espécie de dicionário que “traduz” o que cada pino “fala”. 
 
+Uma tabela com todos os comandos PID compatíveis com cada protocolo de OBD pode ser encontrada aqui: https://bit.ly/2V9tSx9
+Porém, nem todos serão compatíveis com todos os veículos. Veículos nacionais fabricados a partir de 2012 utilizam o protocolo nº[...]
+
+#### Edit: Aprofundar esta explicação assim que possível!
 
 ---
 # Mais atualizações do projeto em breve!
