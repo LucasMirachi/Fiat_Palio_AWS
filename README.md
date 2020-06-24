@@ -2,9 +2,26 @@
   <img src="https://1.bp.blogspot.com/-CH8TRL_RVUM/VscQfCRByTI/AAAAAAAAJW0/RLeLd2w1LbU/s1600/Work_In_Progress.png" width="175" height="150">
 </p>
 
-# Projeto - Conectando um Fiat Palio na AWS
+# Projeto - Conectando um Fiat Palio na Nuvem AWS
 
-No dia 06/05/2020, Vinicius Senger (Senior Technical Evangelist na Amazon Web Services) participou do 4º Open Space da DataSprints, onde este apresentou um projeto bem peculiar, que foi como conectar uma Kombi na Nuvem!
+## Justificativa
+
+Não é surpresa para ninguém que o mundo do IoT (Internet of Things ou 'Internet das Coisas') já está entre nós. Seja em casa ou na indústria, artigos como lâmpadas acionados pelo seu smartphone, fechaduras inteligentes ou até mesmo sensores para aguar suas plantas de acordo com a temperatura do sol, umidade e claridade do dia já são acessíveis para boa parte dos brasileiros. Diante desta mudança, como um ~~quase~~ Engenheiro Mecânico, eu me pergunto: "Mas e os carros!?".   
+
+Segundo especialistas do IEEE (Instituto de Engenheiros Eletricistas e Eletrônicos), a maior organização professional técnica do mundo, em 2025 cerca de 60% dos carros nas ruas poderão estar conectados à internet e utilizando serviços online. Além disso, segundo o Gartner, são esperados 250 milhões de automóveis conectados à Internet das Coisas (IoT) até 2020 e, somente nos EUA, já circulam mais de 40 milhões de automóveis conectados à IoT, o que representa 15% do montante. 
+
+Fatalmente, as oportunidades de aprendizado são muito grandes blablabla.
+Montadoras de todo o mundo já realizam investimentos em tecnologias para a transformação de seus carros em veículos inteligentes, incluindo as próprias montadoras brasileiras. As possibilidades são enormes, variando desde o monitoramento dos dados fornecidos pelo carro para realização de manutenções preditivadas, até 
+
+## Objetivo
+
+De acordo com Alberto Broggi, membro senior do IEEE e professor da Universidade de Parma, Itália, *"no futuro as pessoas pagarão para dirigir os carros manualmente, do mesmo modo como hoje pagamos por uma corrida de kart"*. Apesar de ser um projeto bem complexo, o princípio de um carro autônomo começa com a obtenção dos dados do veículo para então fazer o processamento e finalmente "fazer o carro dirigir sozinho" de fato.
+
+Por se tratar de um projeto iniciante com o intuito de aprender sobre IoT e veículos conectados, este projeto tem como objetivo se aprender a obter dados em tempo real de um veículo e então armazenar estes dados na nuvem. Com isso, posteriormente será possível realizar outros projetos complementares de nível mais avançado, utilizando-se estes mesmos dados para a criação de um algoritmo de Machine Learning para a previsão da necessidade de manutenção do carro ou até mesmo fazer um indicador para otimização do consumo.
+
+## Metodologia
+
+No dia 06/05/2020, o Desenvolvedor Sênior da Amazon Web Services Vinicius Senger participou de uma palestra online da DataSprints (empresa de consultoria de Engenharia e Ciência dos Dados) e apresentou seu projeto de conectar uma Volkswagen Kombi na núvem AWS, promovendo uma séria de discussões e ideias imprescindíveis para a realização deste projeto.
 
 [<img src="Screenshot1.png">](https://www.youtube.com/watch?v=tqBR3G_eFQc&t=2417s)
 <p align="center">
@@ -13,29 +30,20 @@ No dia 06/05/2020, Vinicius Senger (Senior Technical Evangelist na Amazon Web Se
 
 ---
 
-## Conectando meu carro na nuvem!
-Como proprietário de um Fiat Palio 2014/2015, me senti motivado a tentar conectá-lo na nuvem também, iniciando um novo projeto.
+Basicamente, o fluxo para a obtenção dos dados em tempo real do veículo deve ser:
 
-Para ainda mais informações sobre o processo de receber as informações do veículo e transmití-las à AWS, o Vinicius Senger possui publicado em seu canal do Youtube mais um vídeo.
+**Intalação de um módulo OBDII na central ** -> **Obtenção dos dados utilizando um Laptop ou um RaspberryPi** -> **Armazenamento dos dados por rede na AWS**
 
-[<img src="Screenshot2.png">](https://www.youtube.com/watch?v=Iiku8HAPAgo&t=316s)
-<p align="center">
-<sub>Para abrir o vídeo no Youtube, clique na imagem!</sub>
-</p> 
-
-Basicamente, o fluxo deve ser:
-**OBDII** -> **Laptop** -> **AWS**
-
-Diferentemente do apresentado pelo Vinicius, que utiliza um módulo de comunicação OBDII USB, para este projeto, irei utilizar um módulo OBDII com conexão bluetooth.
+Diferentemente do apresentado no projeto da Kombi, que utiliza um módulo de comunicação OBDII USB, para este projeto, foi utilizado um módulo OBDII com conexão bluetooth, como o aparelho das imagens a seguir.
 
 <p align="center">
   <img src="OBDII.png" width="200" height="200">
 </p>
 
-Para o Fiat Palio, a entrada do OBDII se localiza em um compartimento abaixo do volante. É necessário remover um parafuso para ter acesso à entrada.
+Para o Fiat Palio, a entrada do módulo OBDII se localiza em um compartimento abaixo do volante. Para ter acesso, é necessário a remoção de um parafuso e o deslocamento do painel.
 
 <p align="center">
-  <img src="Entrada3.png" >
+  <img src="Entrada3.png" width="300" height="300" >
 </p>
 
 <p align="center">
