@@ -31,7 +31,7 @@ No dia 06/05/2020, o Desenvolvedor Sênior da Amazon Web Services, Vinicius Seng
 
 Basicamente, o fluxo para a obtenção dos dados em tempo real do veículo deve ser:
 
-**Intalação de um módulo OBDII na central ** -> **Obtenção dos dados utilizando um Laptop ou um RaspberryPi** -> **Armazenamento dos dados por rede na AWS**
+**Intalação de um módulo OBDII na central** -> **Obtenção dos dados utilizando um Laptop ou um RaspberryPi** -> **Armazenamento dos dados por rede na AWS**
 
 Diferentemente do apresentado no projeto do Senger e sua Kombi que utiliza um módulo de comunicação OBDII USB, para este projeto, foi utilizado um módulo OBDII com conexão bluetooth (o que adiciona um certo desafio ao projeto, já que sua conexão com o Laptor se torna um pouco mais complexa), como o aparelho das imagens a seguir.
 
@@ -67,17 +67,33 @@ ser.write("atz\r\n".encode())
 print(ser.readline())
 ~~~
 
+Pronto, se apareceu um output com o nome do OBD2 e sua versão (no meu caso, é um ELM327 versão 2.2) como na imagem, agora teoricamente os equipamentos conseguem trocar informações!
+<p align="center">
+  <img src="Output_1.PNG">
+</p>
 
-Pronto, agora teoricamente os equipamentos conseguem trocar informações! Mas como fazemos com que  
+Mas como fazer para que o OBDII entenda quais informações queremos? Para isso, precisamos aprender sobre os comandos AT e sobre os protocolos de comunicação utilizados por todos os módulos OBDII.
 
 ### Entendendo 
 
 Conectado o módulo OBD2 no carro, e após pareá-lo com o laptop, é necessário identificar o serial do módulo bluetooth (no meu caso, tty63) e rodar o código:
 
+
+---
+# Mais atualizações do projeto em breve!
+## Next Steps:
+Por algum motivo, estou conseguindo pegar dados sobre as rotações em rpm do motor, sobre a velocidade instantânea do carro e sobre a temperatura do motor em tempo real, mas não estou conseguindo converter para valores legíveis. Ficam aparecendo as mensagens de debug de "valor errado" junto com os dados crus vindos do OBDII. É necessário descobrir o que está ocasionando este erro. Passado este obstáculo, vai ser só armazenar os dados na núvem, o que acredito que será bem tranquilo devido à excelente documentação que a AWS fornece.
+
+<p align="center">
+  <img src="Valor errado.PNG">
+</p>
+
+---
+# Código Final (não definitivo, é necessário arrumar)
 ~~~
 import serial
 import time
-ser = serial.Serial('/dev/tty63', 38400, timeout=1, bytesize=8, parity=serial.PARITY_NONE)
+ser = serial.Serial('COM6', 38400, timeout=1, bytesize=8, parity=serial.PARITY_NONE)
 time.sleep(1)
 ser.write("atz\r\n".encode())
 print(ser.readline())
