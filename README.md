@@ -10,8 +10,7 @@ Não é surpresa para ninguém que o mundo do IoT (Internet of Things ou 'Intern
 
 Segundo especialistas do IEEE (Instituto de Engenheiros Eletricistas e Eletrônicos), a maior organização professional técnica do mundo, em 2025 cerca de 60% dos carros nas ruas poderão estar conectados à internet e utilizando serviços online. Além disso, segundo o Gartner, são esperados 250 milhões de automóveis conectados à Internet das Coisas (IoT) até 2020 e, somente nos EUA, já circulam mais de 40 milhões de automóveis conectados à IoT, o que representa 15% do montante. 
 
-Fatalmente, as oportunidades de aprendizado são muito grandes blablabla.
-Montadoras de todo o mundo já realizam investimentos em tecnologias para a transformação de seus carros em veículos inteligentes, incluindo as próprias montadoras brasileiras. As possibilidades são enormes, variando desde o monitoramento dos dados fornecidos pelo carro para realização de manutenções preditivadas, até 
+Montadoras de todo o mundo já realizam investimentos em tecnologias para a transformação de seus carros em veículos inteligentes, incluindo as próprias montadoras brasileiras. Fatalmente, as oportunidades de aprendizado são muito grandes e as possibilidades são enormes, variando desde o monitoramento dos dados fornecidos pelo carro para realização de manutenções preditivadas, direção autônoma e muito mais. Dessa forma, este é um grande momento para o aprendizado destas novas tecnologias emergentes no mercado automotivo. 
 
 ## Objetivo
 
@@ -21,7 +20,7 @@ Por se tratar de um projeto iniciante com o intuito de aprender sobre IoT e veí
 
 ## Metodologia
 
-No dia 06/05/2020, o Desenvolvedor Sênior da Amazon Web Services Vinicius Senger participou de uma palestra online da DataSprints (empresa de consultoria de Engenharia e Ciência dos Dados) e apresentou seu projeto de conectar uma Volkswagen Kombi na núvem AWS, promovendo uma séria de discussões e ideias imprescindíveis para a realização deste projeto.
+No dia 06/05/2020, o Desenvolvedor Sênior da Amazon Web Services, Vinicius Senger, participou de uma palestra online da DataSprints (empresa de consultoria de Engenharia e Ciência dos Dados) e apresentou seu projeto de conectar uma Volkswagen Kombi na núvem AWS, promovendo uma série de discussões e ideias imprescindíveis para a realização deste projeto.
 
 [<img src="Screenshot1.png">](https://www.youtube.com/watch?v=tqBR3G_eFQc&t=2417s)
 <p align="center">
@@ -34,13 +33,13 @@ Basicamente, o fluxo para a obtenção dos dados em tempo real do veículo deve 
 
 **Intalação de um módulo OBDII na central ** -> **Obtenção dos dados utilizando um Laptop ou um RaspberryPi** -> **Armazenamento dos dados por rede na AWS**
 
-Diferentemente do apresentado no projeto da Kombi, que utiliza um módulo de comunicação OBDII USB, para este projeto, foi utilizado um módulo OBDII com conexão bluetooth, como o aparelho das imagens a seguir.
+Diferentemente do apresentado no projeto do Senger e sua Kombi que utiliza um módulo de comunicação OBDII USB, para este projeto, foi utilizado um módulo OBDII com conexão bluetooth (o que adiciona um certo desafio ao projeto, já que sua conexão com o Laptor se torna um pouco mais complexa), como o aparelho das imagens a seguir.
 
 <p align="center">
   <img src="OBDII.png" width="200" height="200">
 </p>
 
-Para o Fiat Palio, a entrada do módulo OBDII se localiza em um compartimento abaixo do volante. Para ter acesso, é necessário a remoção de um parafuso e o deslocamento do painel.
+Para o Fiat Palio Modelo 2014/2015, a entrada do módulo OBDII se localiza em um compartimento abaixo do volante. Para ter acesso, é necessário a remoção de um parafuso e o deslocamento do painel.
 
 <p align="center">
   <img src="Entrada3.png" width="300" height="300" >
@@ -53,6 +52,22 @@ Para o Fiat Palio, a entrada do módulo OBDII se localiza em um compartimento ab
 <p align="center">
   <img src="Entrada2.png" width="150" height="150">
 </p>
+
+## Pareamento do módulo bluetooth com o PC
+
+Para a realização desta etapa, é necessário um entendimento básico de programação em Python. Basicamente, deve-se parear e conectar o módulo OBDII com o computador através das próprias configurações de seu sistema operacional (exatamente como se conecta um teclado ou um fone bluetooth). Em seguida, deve-se identificar qual porta de serial o OBDII está atrelado (no meu caso, é na porta serial 'COM6', que é um dos serial padrão por link Bluetooth disponíveis). 
+
+Para testar se tudo está setado corretamente, entramos com o código:
+```import serial
+ser = serial.Serial('COM6', 38400, timeout=1, bytesize=8, parity=serial.PARITY_NONE)
+# Os principais parâmetros: COM6 = Nome da porta serial usada pelo OBD e 38400 = a frequência de Bits por segundo que 
+# o aparelho opera
+ser.write("atz\r\n".encode())
+print(ser.readline())```
+
+Pronto, agora teoricamente os equipamentos conseguem trocar informações! Mas como fazemos com que  
+
+### Entendendo 
 
 Conectado o módulo OBD2 no carro, e após pareá-lo com o laptop, é necessário identificar o serial do módulo bluetooth (no meu caso, tty63) e rodar o código:
 
